@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"net/http"
 	"receipt_processor/internal/schema"
-	"strings"
+
+	"github.com/gorilla/mux"
 )
 
 // processReceipt handles the receipt processing request.
@@ -33,7 +34,12 @@ func (s *server) processReceipt() http.HandlerFunc {
 // getPoints handles the request to get points for a given receipt ID.
 func (s *server) getPoints() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		id := strings.TrimPrefix(r.URL.Path, "/receipts/")
+		vars := mux.Vars(r)
+		id, ok := vars["id"]
+		if !ok {
+			http.Error(w, "Missing receipt ID", http.StatusBadRequest)
+			return
+		}
 		points, err := s.ReceiptLogic.Get(id)
 		if err != nil {
 			http.Error(w, "Failed to Get", http.StatusInternalServerError)
@@ -41,8 +47,15 @@ func (s *server) getPoints() http.HandlerFunc {
 		}
 
 		// Respond with the points
-		response := map[string]string{"points": fmt.Sprintf("%f", points)}
+		response := map[string]string{"points": fmt.Sprintf("%.2f", points)}
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(response)
+	}
+}
+
+// handleMissingID handles the request with missing id
+func (s *server) handleMissingID() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		http.Error(w, "Missing receipt ID", http.StatusBadRequest)
 	}
 }
