@@ -17,7 +17,8 @@ import (
 // InitializeServer initializes a new server instance.
 func InitializeServer() (Server, error) {
 	dbDB := db.ProvideCacheDB()
-	receiptLogic := logic.NewReceiptLogic(dbDB)
+	receiptLogicOptions := logic.ProvideOptions(dbDB)
+	receiptLogic := logic.NewReceiptLogic(receiptLogicOptions)
 	serverServer := NewServer(receiptLogic)
 	return serverServer, nil
 }
@@ -25,4 +26,4 @@ func InitializeServer() (Server, error) {
 // wire.go:
 
 // ProviderSet is the Wire provider set for the server.
-var ProviderSet = wire.NewSet(db.ProvideCacheDB, logic.NewReceiptLogic, NewServer)
+var ProviderSet = wire.NewSet(db.ProvideCacheDB, logic.ProvideOptions, logic.NewReceiptLogic, NewServer)

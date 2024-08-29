@@ -9,8 +9,8 @@ import (
 	"receipt_processor/internal/schema"
 	"testing"
 
-	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
+	"go.uber.org/mock/gomock"
 )
 func TestProcessReceipt(t *testing.T) {
 	ctrl := gomock.NewController(t)

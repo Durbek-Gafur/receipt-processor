@@ -13,6 +13,7 @@ import (
 // ProviderSet is the Wire provider set for the server.
 var ProviderSet = wire.NewSet(
 	db.ProvideCacheDB,
+	logic.ProvideOptions,
 	logic.NewReceiptLogic,
 	NewServer,
 
