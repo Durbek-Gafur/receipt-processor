@@ -30,7 +30,7 @@ func TestProcessReceipt(t *testing.T) {
 		{
 			name:           "Successful Receipt Processing",
 			inputBody:      schema.Receipt{ /* populate with valid data */ },
-			mockProcess:    func(m *mock_receipt_logic.MockReceiptLogic) { m.EXPECT().Process(gomock.Any()).Return("12345", nil) },
+			mockProcess:    func(m *mock_receipt_logic.MockReceiptLogic) { m.EXPECT().ProcessReceipt(gomock.Any()).Return("12345", nil) },
 			expectedStatus: http.StatusOK,
 			expectedBody:    `{"id":"12345"}`,
 		},
@@ -44,9 +44,9 @@ func TestProcessReceipt(t *testing.T) {
 		{
 			name:           "Failed Receipt Processing",
 			inputBody:      schema.Receipt{ /* populate with valid data */ },
-			mockProcess:    func(m *mock_receipt_logic.MockReceiptLogic) { m.EXPECT().Process(gomock.Any()).Return("", assert.AnError) },
+			mockProcess:    func(m *mock_receipt_logic.MockReceiptLogic) { m.EXPECT().ProcessReceipt(gomock.Any()).Return("", assert.AnError) },
 			expectedStatus: http.StatusInternalServerError,
-			expectedBody:   "Failed to Process",
+			expectedBody:   "Failed to ProcessReceipt",
 		},
 	}
 

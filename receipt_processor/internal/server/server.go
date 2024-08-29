@@ -9,8 +9,6 @@ import (
 )
 type Server interface{
 	ListenAndServe() error
-	processReceipt() http.HandlerFunc 
-	getPoints() http.HandlerFunc
 }
 // server implements the Server interface.
 type server struct {

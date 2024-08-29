@@ -18,9 +18,9 @@ func (s *server) processReceipt() http.HandlerFunc {
 			return
 		}
 
-		id, err := s.ReceiptLogic.Process(receipt)
+		id, err := s.ReceiptLogic.ProcessReceipt(receipt)
 		if err != nil {
-			http.Error(w, "Failed to Process", http.StatusInternalServerError)
+			http.Error(w, "Failed to ProcessReceipt", http.StatusInternalServerError)
 			return
 		}
 
@@ -40,7 +40,7 @@ func (s *server) getPoints() http.HandlerFunc {
 			http.Error(w, "Missing receipt ID", http.StatusBadRequest)
 			return
 		}
-		points, err := s.ReceiptLogic.Get(id)
+		points, err := s.ReceiptLogic.GetPointByReceiptID(id)
 		if err != nil {
 			http.Error(w, "Failed to Get", http.StatusInternalServerError)
 			return
