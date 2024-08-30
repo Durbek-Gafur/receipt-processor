@@ -98,10 +98,10 @@ func TestGetPoints(t *testing.T) {
 			name: "Successful Points Retrieval",
 			url:  "/receipts/32/points",
 			mockGet: func(m *mock_receipt_logic.MockReceiptLogic) {
-				m.EXPECT().Get("32").Return(100.0, nil)
+				m.EXPECT().GetPointByReceiptID("32").Return(100, nil)
 			},
 			expectedStatus: http.StatusOK,
-			expectedBody:   `{"points":"100.00"}`,
+			expectedBody:   `{"points":"100"}`,
 		},
 		{
 			name:           "Missing receipt ID",
@@ -119,7 +119,7 @@ func TestGetPoints(t *testing.T) {
 			name: "Failed to Get",
 			url:  "/receipts/32/points",
 			mockGet: func(m *mock_receipt_logic.MockReceiptLogic) {
-				m.EXPECT().Get("32").Return(0.0, assert.AnError)
+				m.EXPECT().GetPointByReceiptID("32").Return(0, assert.AnError)
 			},
 			expectedStatus: http.StatusInternalServerError,
 			expectedBody:   "Failed to Get",
