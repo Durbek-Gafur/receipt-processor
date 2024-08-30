@@ -10,7 +10,6 @@
 package mock_db
 
 import (
-	schema "receipt_processor/internal/schema"
 	reflect "reflect"
 
 	gomock "go.uber.org/mock/gomock"
@@ -39,31 +38,31 @@ func (m *MockDB) EXPECT() *MockDBMockRecorder {
 	return m.recorder
 }
 
-// GetPointByID mocks base method.
-func (m *MockDB) GetPointByID(id string) (any, error) {
+// GetPointByReceiptID mocks base method.
+func (m *MockDB) GetPointByReceiptID(id string) (any, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "GetPointByID", id)
+	ret := m.ctrl.Call(m, "GetPointByReceiptID", id)
 	ret0, _ := ret[0].(any)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// GetPointByID indicates an expected call of GetPointByID.
-func (mr *MockDBMockRecorder) GetPointByID(id any) *gomock.Call {
+// GetPointByReceiptID indicates an expected call of GetPointByReceiptID.
+func (mr *MockDBMockRecorder) GetPointByReceiptID(id any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetPointByID", reflect.TypeOf((*MockDB)(nil).GetPointByID), id)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetPointByReceiptID", reflect.TypeOf((*MockDB)(nil).GetPointByReceiptID), id)
 }
 
-// SaveReceipt mocks base method.
-func (m *MockDB) SaveReceipt(id string, receipt schema.Receipt) error {
+// SavePoints mocks base method.
+func (m *MockDB) SavePoints(id string, points int) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "SaveReceipt", id, receipt)
+	ret := m.ctrl.Call(m, "SavePoints", id, points)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
-// SaveReceipt indicates an expected call of SaveReceipt.
-func (mr *MockDBMockRecorder) SaveReceipt(id, receipt any) *gomock.Call {
+// SavePoints indicates an expected call of SavePoints.
+func (mr *MockDBMockRecorder) SavePoints(id, points any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SaveReceipt", reflect.TypeOf((*MockDB)(nil).SaveReceipt), id, receipt)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SavePoints", reflect.TypeOf((*MockDB)(nil).SavePoints), id, points)
 }
