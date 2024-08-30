@@ -39,32 +39,32 @@ func (m *MockReceiptLogic) EXPECT() *MockReceiptLogicMockRecorder {
 	return m.recorder
 }
 
-// Get mocks base method.
-func (m *MockReceiptLogic) Get(id string) (float64, error) {
+// GetPointByReceiptID mocks base method.
+func (m *MockReceiptLogic) GetPointByReceiptID(id string) (float64, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Get", id)
+	ret := m.ctrl.Call(m, "GetPointByReceiptID", id)
 	ret0, _ := ret[0].(float64)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// Get indicates an expected call of Get.
-func (mr *MockReceiptLogicMockRecorder) Get(id any) *gomock.Call {
+// GetPointByReceiptID indicates an expected call of GetPointByReceiptID.
+func (mr *MockReceiptLogicMockRecorder) GetPointByReceiptID(id any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Get", reflect.TypeOf((*MockReceiptLogic)(nil).Get), id)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetPointByReceiptID", reflect.TypeOf((*MockReceiptLogic)(nil).GetPointByReceiptID), id)
 }
 
-// Process mocks base method.
-func (m *MockReceiptLogic) Process(receipt schema.Receipt) (string, error) {
+// ProcessReceipt mocks base method.
+func (m *MockReceiptLogic) ProcessReceipt(receipt schema.Receipt) (string, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Process", receipt)
+	ret := m.ctrl.Call(m, "ProcessReceipt", receipt)
 	ret0, _ := ret[0].(string)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// Process indicates an expected call of Process.
-func (mr *MockReceiptLogicMockRecorder) Process(receipt any) *gomock.Call {
+// ProcessReceipt indicates an expected call of ProcessReceipt.
+func (mr *MockReceiptLogicMockRecorder) ProcessReceipt(receipt any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Process", reflect.TypeOf((*MockReceiptLogic)(nil).Process), receipt)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ProcessReceipt", reflect.TypeOf((*MockReceiptLogic)(nil).ProcessReceipt), receipt)
 }
