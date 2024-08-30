@@ -39,10 +39,10 @@ func (m *MockDB) EXPECT() *MockDBMockRecorder {
 }
 
 // GetPointByReceiptID mocks base method.
-func (m *MockDB) GetPointByReceiptID(id string) (any, error) {
+func (m *MockDB) GetPointByReceiptID(id string) (int, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetPointByReceiptID", id)
-	ret0, _ := ret[0].(any)
+	ret0, _ := ret[0].(int)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }

@@ -28,8 +28,12 @@ func NewReceiptLogic(options ReceiptLogicOptions) ReceiptLogic {
 	return logic
 }
 
-func (r *receiptLogic) GetPointByReceiptID(i string) (float64, error) {
-	return 0.5, nil
+func (r *receiptLogic) GetPointByReceiptID(i string) (int, error) {
+	point, err := r.Options.DB.GetPointByReceiptID(i)
+	if err != nil {
+		return 0, err
+	}
+	return point, nil
 }
 
 func (r *receiptLogic) ProcessReceipt(receipt schema.Receipt) (string, error) {

@@ -40,10 +40,10 @@ func (m *MockReceiptLogic) EXPECT() *MockReceiptLogicMockRecorder {
 }
 
 // GetPointByReceiptID mocks base method.
-func (m *MockReceiptLogic) GetPointByReceiptID(id string) (float64, error) {
+func (m *MockReceiptLogic) GetPointByReceiptID(id string) (int, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetPointByReceiptID", id)
-	ret0, _ := ret[0].(float64)
+	ret0, _ := ret[0].(int)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }

@@ -47,7 +47,7 @@ func (s *server) getPoints() http.HandlerFunc {
 		}
 
 		// Respond with the points
-		response := map[string]string{"points": fmt.Sprintf("%.2f", points)}
+		response := map[string]string{"points": fmt.Sprintf("%d", points)}
 		w.Header().Set("Content-Type", "application/json")
 		json.NewEncoder(w).Encode(response)
 	}
